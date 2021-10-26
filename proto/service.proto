@@ -1,0 +1,32 @@
+syntax = "proto3";
+package proto;
+option go_package = "./";
+
+
+
+message User {
+    string id = 1;
+    string name = 2;
+}
+
+message Message {
+    string id = 1;
+    string content = 2;
+    string timestamp = 3;
+}
+
+message Connect {
+    User user = 1;
+    bool active = 2;
+}
+
+message Close{} // Empty message?
+
+service Broadcast {
+    // This gets all the messages for the user which is in connect
+    rpc CreateStream(Connect) returns (stream Message); 
+    rpc BroadcastMessage(Message) returns (Close);
+}
+
+
+
