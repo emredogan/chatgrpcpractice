@@ -1,6 +1,6 @@
 syntax = "proto3";
 package proto;
-option go_package = "./";
+option go_package = "./;proto";
 
 
 
@@ -24,8 +24,8 @@ message Close{} // Empty message?
 
 service Broadcast {
     // This gets all the messages for the user which is in connect
-    rpc CreateStream(Connect) returns (stream Message); 
-    rpc BroadcastMessage(Message) returns (Close);
+    rpc CreateStream(Connect) returns (stream Message); // Adding client to the server
+    rpc BroadcastMessage(Message) returns (Close); // SayHello from the other project. But it should broadcast to the all clients.
 }
 
 
